@@ -1,0 +1,92 @@
+{
+  "projectType": "application",
+  "sourceRoot": "apps/tailwind-nx-demo/src",
+  "prefix": "angular-tailwind-nx",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/tailwind-nx-demo",
+        "index": "apps/tailwind-nx-demo/src/index.html",
+        "main": "apps/tailwind-nx-demo/src/main.ts",
+        "polyfills": "apps/tailwind-nx-demo/src/polyfills.ts",
+        "tsConfig": "apps/tailwind-nx-demo/tsconfig.app.json",
+        "assets": [
+          "apps/tailwind-nx-demo/src/favicon.ico",
+          "apps/tailwind-nx-demo/src/assets"
+        ],
+        "styles": ["apps/tailwind-nx-demo/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/tailwind-nx-demo/src/environments/environment.ts",
+              "with": "apps/tailwind-nx-demo/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "tailwind-nx-demo:build:production"
+        },
+        "development": {
+          "browserTarget": "tailwind-nx-demo:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "tailwind-nx-demo:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/tailwind-nx-demo/**/*.ts",
+          "apps/tailwind-nx-demo/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/tailwind-nx-demo"],
+      "options": {
+        "jestConfig": "apps/tailwind-nx-demo/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
