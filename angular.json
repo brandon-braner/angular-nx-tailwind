@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "tailwind-nx-demo": "apps/tailwind-nx-demo",
-    "tailwind-nx-demo-e2e": "apps/tailwind-nx-demo-e2e"
+    "tailwind-nx-demo-e2e": "apps/tailwind-nx-demo-e2e",
+    "ui": "libs/ui"
   }
 }
